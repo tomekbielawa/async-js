@@ -57,3 +57,28 @@ asyncIterator.next()
 .then(iterResult3 => {
     console.log(iterResult3); //{value: undefined, done: true}
 });
+
+
+/**
+ * Fibonacci
+ */
+const fibonacci = {
+  [Symbol.iterator]() {
+    let previous = 0,
+        current = 1;
+        
+    return {
+      next() {
+        let value = current,
+                  next = current + previous;
+              
+                previous = current,
+                current = next;
+        
+        return { value, done: false }
+      }
+    }
+  }
+}
+
+const sequence = fibonacci[Symbol.iterator]();
